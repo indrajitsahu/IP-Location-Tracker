@@ -1,6 +1,8 @@
-let ip = document.getElementById("ipInput").value;
 function getDetails() {
-  let url = `http://ip-api.com/json/${ip}`;
+//   let ipLocation = document.getElementsByName("ipInput")[0].value;
+  let url = `http://ip-api.com/json/${
+    document.getElementById("ipInput").value
+  }`;
 
   // console.log(url)
   // 24.48.0.1
@@ -8,33 +10,40 @@ function getDetails() {
 
   let str = ``;
 
+//   console.log(ipLocation);
+  console.log(url);
+
   fetch(url)
-    .then((data) => data.json())
-    .then( ele => {
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
       str += `<ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <span style="font-weight: bold; color: green;">Country --> </span>${ele.country}
+            <span style="font-weight: bold; color: green;">Country --> </span>${data.country}
           </li>
           <li class="list-group-item">
-            <span style="font-weight: bold; color: green;">Region --> </span>${ele.regionName}
+            <span style="font-weight: bold; color: green;">Region --> </span>${data.regionName}
           </li>
           <li class="list-group-item">
-            <span style="font-weight: bold; color: green;">City --> </span>${ele.city}
+            <span style="font-weight: bold; color: green;">City --> </span>${data.city}
           </li>
           <li class="list-group-item">
-            <span style="font-weight: bold; color: green;">Timezone --> </span>${ele.timezone}
+            <span style="font-weight: bold; color: green;">Timezone --> </span>${data.timezone}
           </li>
           <li class="list-group-item">
-            <span style="font-weight: bold; color: green;">Your IP --> </span>${ele.query}
+            <span style="font-weight: bold; color: green;">Your IP --> </span>${data.query}
           </li>
           <li class="list-group-item">
             <span style="font-weight: bold; color: green;">Service Provider --> </span
-            >${ele.isp}
+            >${data.isp}
           </li>
           <li class="list-group-item">
-            <span style="font-weight: bold; color: green;">Organization --> </span>${ele.org}
+            <span style="font-weight: bold; color: green;">Organization --> </span>${data.org}
           </li>
         </ul>`;
-      document.getElementById("result").innerHTML = str;
+      console.log(str);
+      document.getdatamentById("result").innerHTML = str;
     });
+
+  // console.log(str)
 }
